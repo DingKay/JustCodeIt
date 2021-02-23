@@ -27,5 +27,9 @@ public class BigEndian {
         for (int i = 0; i < charArray.length; i++) {
             System.out.print("charArray = " + Integer.toHexString(charArray[i]) + " ");
         }
+
+        byte[] bytes = FileUtil.readFileByteArr("C:\\Users\\Kay\\Desktop\\BigEndian.txt");
+        String arrToHexadecimal = DigitUtil.byteArrToHexadecimal(bytes);
+        System.out.println("\narrToHexadecimal = " + arrToHexadecimal);
     }
 }

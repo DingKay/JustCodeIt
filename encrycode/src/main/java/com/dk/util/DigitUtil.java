@@ -12,16 +12,29 @@ public class DigitUtil {
     public static String decimalArrayToHexadecimal(char[] decimalArr) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < decimalArr.length; i++) {
-            StringBuilder recursion = new StringBuilder(recursionToHexadecimal(decimalArr[i]));
+            StringBuilder recursion = new StringBuilder(recursionIntegerToHexadecimal(decimalArr[i]));
             sb.append(recursion.reverse());
         }
         return sb.toString();
     }
 
-    private static String recursionToHexadecimal(int decimalChar) {
+    private static String recursionIntegerToHexadecimal(int decimalChar) {
         if (decimalChar == 0) {
             return "";
         }
-        return hexCharArr[decimalChar & 0xf] + recursionToHexadecimal(decimalChar >> 4);
+        return hexCharArr[decimalChar & 0xf] + recursionIntegerToHexadecimal(decimalChar >> 4);
+    }
+
+    public static String byteArrToHexadecimal(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            if (bytes[i] > 0 && bytes[i] < 16) {
+                sb.append("0");
+            } else {
+                sb.append(hexCharArr[(bytes[i] >> 4) & 0xf]);
+            }
+            sb.append(hexCharArr[bytes[i] & 0xf]);
+        }
+        return sb.toString();
     }
 }
